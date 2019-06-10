@@ -30,6 +30,12 @@ def record():
 
 
 def write_to_file(frames, output, vw, vh, vfps):
+    if(vw == 0 or vh == 0 or vfps == 0) :
+        cap = cv2.VideoCapture(0)
+        vw = int(cap(3))
+        vh = int(cap(4))
+        vfps = int(cap(5))
+        
     if not str.endswith(output, ".avi"):
         print("background.py: error: can only output AVI video files (*.avi extension)")
         exit(1)

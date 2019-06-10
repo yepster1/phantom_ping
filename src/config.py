@@ -7,6 +7,9 @@ def get_forward_time():
 def get_raw_directory():
     return "../data/"
 
+def get_finished_directory():
+    return "../finishedVideos/"
+
 def get_start(time):
     return round(time/10) -  get_back_time()
 
