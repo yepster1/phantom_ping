@@ -18,6 +18,36 @@ def combine_videos_at_timestamps(start, end):
 
 #combines the frames of 2 vidoes
 def combine_two_videos(first, second):
+    cap = read_video(first)
+    cap1 = read_video(second)
+    if (cap.isOpened()== False):
+        print("Error opening video stream or file " + str(first))
+
+    if (cap1.isOpened()== False):
+        print("Error opening video stream or file " + str(second))
+
+    frames = []
+    while(cap.isOpened()):
+
+        ret, frame = cap.read()
+        if ret == True:
+            frames.append(frame)
+        else:
+            break
+    while (cap1.isOpened()):
+        ret, frame = cap1.read()
+        if ret == True:
+            frames.append(frame)
+        else:
+            break
+
+    cap.release()
+    cap1.release()
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    return frames
 
 def read_next_video(counterTime):
     counterTime += 10
