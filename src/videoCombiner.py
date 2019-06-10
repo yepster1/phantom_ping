@@ -25,7 +25,7 @@ def read_previous_video(counterTime):
     return False
 
 def read_next_video(counterTime):
-    counterTime += c.config.get_snippit_lengths()
+    counterTime += 10
     return False
 
 def read_video(videoName):

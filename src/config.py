@@ -1,8 +1,5 @@
 class config:
 
-    def get_snippit_lengths():
-        return 10
-
     def get_back_time():
         return 15
 
