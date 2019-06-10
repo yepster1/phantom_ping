@@ -20,7 +20,7 @@ def record():
         frames.append(frame)
         cv2.imshow('frame',frame)
         if time.time() > timeout:
-            write_to_file(frames, c.config.get_raw_directory() + str(round(time.time()/10)) + ".avi", int(cap.get(3)), int(cap.get(4)), int(cap.get(5)))
+            write_to_file(frames, c.get_raw_directory() + str(round(time.time()/10)) + ".avi", int(cap.get(3)), int(cap.get(4)), int(cap.get(5)))
             timeout = time.time() + 10
             frames = []
         if cv2.waitKey(1) & 0xFF == ord('q'):
