@@ -14,15 +14,10 @@ def list_all_files(path):
     return files
 
 def combine_videos_at_timestamps(start, end):
-
     return video
 
 #combines the frames of 2 vidoes
 def combine_two_videos(first, second):
-
-def read_previous_video(counterTime):
-    counterTime += c.config.get_snippit_lengths()
-    return False
 
 def read_next_video(counterTime):
     counterTime += 10
