@@ -1,6 +1,8 @@
 import socket                   # Import socket module
 import config as c
 import pickle as p
+import videoWriter as vw
+import time
 
 queue = []
 def get_videos():
@@ -40,4 +42,5 @@ def displayer_recieve():
         data_arr = p.loads(b"".join(data))
         print("video recieved")
         queue.append(data_arr)
+        vw.write_to_file(data_arr, c.get_finished_directory()+str(time.time()) + ".avi", 640, 480, 20)
         conn.close()
