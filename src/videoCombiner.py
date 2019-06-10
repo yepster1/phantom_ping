@@ -10,11 +10,29 @@ def list_all_files(path):
         for file in f:
             if '.avi' in file:
                 files.append(file)
-
     return files
 
-def combine_videos_at_timestamps(start, end):
-    return video
+def combine_videos_between_timestamps(start, end):
+    frames = []
+    while(start < end):
+        video = read_next_video(start)
+        frames = add_next_video(frames, video)
+        print(start)
+        start += 1
+    return frames
+
+def add_next_video(frames, cap):
+    if (cap.isOpened()== False):
+        print("Error opening video stream or file " + str(cap))
+    while(cap.isOpened()):
+
+        ret, frame = cap.read()
+        if ret == True:
+            frames.append(frame)
+        else:
+            break
+    cap.release()
+    return frames
 
 #combines the frames of 2 vidoes
 def combine_two_videos(first, second):
@@ -50,13 +68,14 @@ def combine_two_videos(first, second):
     return frames
 
 def read_next_video(counterTime):
-    counterTime += 10
-    return False
+    return read_video(counterTime)
 
 def read_video(videoName):
-    cap = cv2.VideoCapture(str(videoName))
+    videoDirectory = c.get_raw_directory() + str(videoName) + ".avi"
+    print("reading video at " + videoDirectory)
+    cap = cv2.VideoCapture(videoDirectory)
     return cap
 
 if __name__ == "__main__" :
     # print(list_all_files(c.config.get_raw_directory()))
-    combine_two_videos(c.config.get_raw_directory() + "1560150754.8829465.avi", c.config.get_raw_directory() + "1560150765.1732647.avi")
+    print(len(combine_videos_between_timestamps(c.get_start(156015544*10), c.get_end(156015544*10))))
