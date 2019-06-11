@@ -16,6 +16,9 @@ def get_start(time):
 def get_end(time):
     return round(time/10) +  get_forward_time()
 
+def get_delete_from(time):
+    return round(time/10) -  10
+
 #set these to correct ips
 def get_displayer_ip():
     return "127.0.0.1"
@@ -23,3 +26,6 @@ def get_displayer_ip():
 #set these to correct ips
 def get_pi_ip():
     return "127.0.0.1"
+
+def get_max_queue_size():
+    return 5
