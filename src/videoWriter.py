@@ -20,7 +20,7 @@ def record():
         frames.append(frame)
         cv2.imshow('frame',frame)
         if time.time() > timeout:
-            write_to_file(frames, c.get_raw_directory() + str(round(time.time()/10)) + ".avi", int(cap.get(3)), int(cap.get(4)), int(cap.get(5)))
+            write_to_file(frames, c.get_raw_directory() + str(round(time.time()/10)) + ".avi", c.get_video_width(), c.get_video_height(), c.get_video_frames())
             timeout = time.time() + 10
             frames = []
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -35,7 +35,7 @@ def write_to_file(frames, output, vw, vh, vfps):
         vw = int(cap(3))
         vh = int(cap(4))
         vfps = int(cap(5))
-        
+
     if not str.endswith(output, ".avi"):
         print("background.py: error: can only output AVI video files (*.avi extension)")
         exit(1)

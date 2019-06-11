@@ -29,3 +29,12 @@ def get_pi_ip():
 
 def get_max_queue_size():
     return 5
+
+def get_video_width():
+    return 640
+
+def get_video_height():
+    return 480
+
+def get_video_frames():
+    return 20
