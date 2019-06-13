@@ -16,8 +16,9 @@ class video_shower(threading.Thread):
         queue = nm.get_videos()
         while len(queue) > 0:
             queue = nm.get_videos()
-            print(len(queue))
+            counter = 0
             for video in queue:
+                counter += 1
                 display_video(video)
         time.sleep(5)
         if cv2.waitKey(1) & 0xFF == ord('q'):

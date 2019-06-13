@@ -1,5 +1,5 @@
 def get_back_time():
-    return 2
+    return 1
 
 def get_forward_time():
     return 2
@@ -38,3 +38,6 @@ def get_video_height():
 
 def get_video_frames():
     return 20
+
+def get_camara_input_location():
+    return 0

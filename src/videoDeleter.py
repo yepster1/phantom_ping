@@ -10,9 +10,14 @@ def delete_files():
             os.remove(c.get_raw_directory() + str(deletefrom) + ".avi")
             deletefrom -= 1
         except:
-            print(c.get_raw_directory() + str(deletefrom) + ".avi")
-            time.sleep(10)
-            deletefrom = c.get_delete_from(time.time())
+            try:
+                deletefrom -= 1
+                os.remove(c.get_raw_directory() + str(deletefrom) + ".avi")
+            except:
+                print(c.get_raw_directory() + str(deletefrom) + ".avi")
+                time.sleep(10)
+                deletefrom = c.get_delete_from(time.time())
+
 
 if __name__ == "__main__" :
     delete_files()

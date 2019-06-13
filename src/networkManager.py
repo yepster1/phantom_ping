@@ -1,26 +1,24 @@
 import socket                   # Import socket module
 import config as c
+import struct
 import pickle as p
 import videoWriter as vw
 import time
-
+import videoCombiner as vc
 queue = []
+
 def get_videos():
     return queue
 
-def pi_send(video):
+def pi_send_ping():
+    print('pinging')
     s = socket.socket()             # Create a socket object
     host = c.get_displayer_ip()
     port = 50000
-
-    print('sendingVideo')
     s.connect((host, port))
-    pickled = p.dumps(video)
-    len(pickled)
-    s.send(pickled)
-
+    s.send(bytearray(struct.pack("f",time.time())))
     s.close()
-    print('sent video')
+    print('ping sent')
 
 def displayer_recieve():
     s = socket.socket()             # Create a socket object
@@ -34,15 +32,21 @@ def displayer_recieve():
     while True:
         conn, addr = s.accept()     # Establish connection with client.
         print('Got connection from', addr)
-        data = []
-        while(True):
-            packet = conn.recv(4096)
-            if not packet: break
-            data.append(packet)
-        data_arr = p.loads(b"".join(data))
-        print("video recieved")
-        queue.append(data_arr)
-        if(len(queue) > c.get_max_queue_size():
+        packet = conn.recv(4096)
+        startTime = c.get_start(time.time())
+        endTime = c.get_end(time.time())
+        time.sleep((c.get_forward_time()+1) * 10)
+        video = vc.combine_videos_between_timestamps(startTime, endTime)
+        queue.insert(0, video)
+        print("queue size: " + str(len(queue)))
+        if(len(queue) > c.get_max_queue_size()) :
+            print("queue big deleting end")
             del queue[-1]
-        vw.write_to_file(data_arr, c.get_finished_directory()+str(time.time()) + ".avi", 640, 480, 20)
+        vw.write_to_file(
+            video,
+            c.get_finished_directory()+str(time.time()) + ".avi",
+            c.get_video_width(),
+            c.get_video_height(),
+            c.get_video_frames())
+        print("ping recieved recieved")
         conn.close()

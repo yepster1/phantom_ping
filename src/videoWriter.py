@@ -9,7 +9,7 @@ def main():
 def record():
     # records 5 second snippits of video
     timeout = time.time() + 5
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(c.get_camara_input_location())
     if cap.isOpened():
         ret, frame = cap.read()
     else:
