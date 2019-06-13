@@ -21,14 +21,14 @@ def get_delete_from(time):
 
 #set these to correct ips
 def get_displayer_ip():
-    return "127.0.0.1"
+    return "192.168.0.119"
 
 #set these to correct ips
 def get_pi_ip():
     return "127.0.0.1"
 
 def get_max_queue_size():
-    return 2
+    return 5
 
 def get_video_width():
     return 640

@@ -11,6 +11,8 @@ class video_shower(threading.Thread):
     threading.Thread.__init__(self)
 
   def run(self):
+    cv2.namedWindow("phantom", cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty("Phantom",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
     print("video shower started")
     while True:
         queue = nm.get_videos()
@@ -28,7 +30,8 @@ class video_shower(threading.Thread):
 
 def display_video(frames):
     for frame in frames:
-        cv2.imshow('frame',frame)
+        resize = cv2.resize(frame, (1280,960), interpolation=cv2.INTER_LINEAR)
+        cv2.imshow('phantom', resize)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 

@@ -4,9 +4,6 @@ import config as c
 import networkManager as nm
 import cv2
 import time
-import threading
-import keyboard
-
 queue = []
 
 def recieve_video(video):
@@ -20,4 +17,7 @@ def send_ping():
     nm.pi_send_ping()
 
 if __name__ == "__main__" :
-    send_ping()
+    while(True):
+        send_ping()
+        time.sleep(45)
+
