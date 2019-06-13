@@ -32,6 +32,7 @@ def display_video(frames):
         cv2.imshow('phantom', resize)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+        cv2.waitKey(30)
 
 if __name__ == "__main__":
     worker = video_shower()

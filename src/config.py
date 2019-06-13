@@ -19,7 +19,6 @@ def get_end(time):
 def get_delete_from(time):
     return round(time/10) -  10
 
-
 #set these to correct ips
 def get_displayer_ip():
     return "192.168.0.112"
