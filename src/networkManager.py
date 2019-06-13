@@ -6,8 +6,20 @@ import videoWriter as vw
 import time
 import videoCombiner as vc
 import cv2
+import random
 
 queue = []
+
+text = [
+    "hey",
+    "you there?",
+    "wud?",
+    "what you up too",
+    "got plans?",
+    "stress is another factor",
+    "have you checked your phone recently?",
+    "89% have experienced phantom vibrations"
+]
 
 def get_videos():
     return queue
@@ -32,10 +44,10 @@ def add_empty_at_end(video):
         video.append(frame2)
     return video
 
-def __draw_label(img, text, pos, bg_color):
+def __draw_label(img, text, pos):
     font_face = cv2.FONT_HERSHEY_SIMPLEX
-    scale = 1
-    color = (255, 255, 255)
+    scale = c.get_text_scale()
+    color = c.get_text_color()
     thickness = cv2.FILLED
     margin = 2
 
@@ -48,14 +60,14 @@ def __draw_label(img, text, pos, bg_color):
 
 def add_top_text(time, counter, video):
     for x in range(len(video)):
-        __draw_label(video[x], str(time), (0,25), (0,0,0))
-        __draw_label(video[x], str(counter), (600,0), (0,0,0))
+        __draw_label(video[x], str(time), (0,25))
+        __draw_label(video[x], str(counter), (600,0))
     return video
 
 def add_ping_text(video):
     start = len(video)//2
     for x in range(start,len(video),1):
-        __draw_label(video[x], str("you got pinged"), (20,400), (0,0,0))
+        __draw_label(video[x], str(random.choice(text)), (20,400))
     return video
 
 def displayer_recieve():

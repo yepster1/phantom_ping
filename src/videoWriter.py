@@ -1,6 +1,6 @@
 import cv2
 import time
-import config as c
+import config as 
 
 def main():
     frames = record()
