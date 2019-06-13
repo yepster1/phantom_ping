@@ -20,6 +20,4 @@ def send_ping():
     nm.pi_send_ping()
 
 if __name__ == "__main__" :
-    time.sleep(5)
-    print("pinging")
     send_ping()

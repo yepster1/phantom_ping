@@ -28,7 +28,7 @@ def get_pi_ip():
     return "127.0.0.1"
 
 def get_max_queue_size():
-    return 5
+    return 2
 
 def get_video_width():
     return 640
