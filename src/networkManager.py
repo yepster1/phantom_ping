@@ -46,9 +46,10 @@ def __draw_label(img, text, pos, bg_color):
 
     cv2.putText(img, text, pos, font_face, scale, color, 1, cv2.LINE_AA)
 
-def add_top_text(time, video):
+def add_top_text(time, counter, video):
     for x in range(len(video)):
         __draw_label(video[x], str(time), (0,25), (0,0,0))
+        __draw_label(video[x], str(counter), (600,0), (0,0,0))
     return video
 
 def add_ping_text(video):
@@ -65,7 +66,7 @@ def displayer_recieve():
     s.listen(5)
 
     print('Server listening....')
-
+    counter = 0
     while True:
         conn, addr = s.accept()     # Establish connection with client.
         print('Got connection from', addr)
@@ -75,9 +76,10 @@ def displayer_recieve():
         endTime = c.get_end(time.time())
         time.sleep((c.get_forward_time()+1) * 10)
         video = vc.combine_videos_between_timestamps(startTime, endTime)
-        video = add_top_text(currentTime, video)
+        video = add_top_text(currentTime, counter, video)
         video = add_ping_text(video)
         video = add_empty_at_end(video)
+        counter+=1
         queue.insert(0, video)
         print("queue size: " + str(len(queue)))
         if(len(queue) > c.get_max_queue_size()) :
