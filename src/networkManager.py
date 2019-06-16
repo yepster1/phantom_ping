@@ -61,7 +61,7 @@ def __draw_label(img, text, pos):
 def add_top_text(time, counter, video):
     for x in range(len(video)):
         __draw_label(video[x], str(time), (0,25))
-        __draw_label(video[x], str(counter), (600,0))
+        __draw_label(video[x], str(counter), (600,25))
     return video
 
 def add_ping_text(video):
@@ -91,7 +91,7 @@ def displayer_recieve():
         video = add_top_text(currentTime, counter, video)
         video = add_ping_text(video)
         video = add_empty_at_end(video)
-        counter+=1
+        counter+ = 1
         queue.insert(0, video)
         print("queue size: " + str(len(queue)))
         if(len(queue) > c.get_max_queue_size()) :
