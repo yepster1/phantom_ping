@@ -66,8 +66,9 @@ def add_top_text(time, counter, video):
 
 def add_ping_text(video):
     start = len(video)//2
+    pingText =str(random.choice(text))
     for x in range(start,len(video),1):
-        __draw_label(video[x], str(random.choice(text)), (20,400))
+        __draw_label(video[x], pingText, (20,400))
     return video
 
 def displayer_recieve():
