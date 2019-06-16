@@ -92,7 +92,7 @@ def displayer_recieve():
         video = add_top_text(currentTime, counter, video)
         video = add_ping_text(video)
         video = add_empty_at_end(video)
-        counter+ = 1
+        counter += 1
         queue.insert(0, video)
         print("queue size: " + str(len(queue)))
         if(len(queue) > c.get_max_queue_size()) :
