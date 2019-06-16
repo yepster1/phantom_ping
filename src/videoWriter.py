@@ -17,7 +17,6 @@ def record():
     frames = []
     while ret:
         ret, frame = cap.read()
-        cv2.imshow("frame",make_frame_black_and_white(frame))
         frames.append(frame)
         if time.time() > timeout:
             write_to_file(frames, c.get_raw_directory() + str(round(time.time()/10)) + ".avi", c.get_video_width(), c.get_video_height(), c.get_video_frames())
