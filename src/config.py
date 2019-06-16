@@ -21,7 +21,7 @@ def get_delete_from(time):
 
 #set these to correct ips
 def get_displayer_ip():
-    return "192.168.0.112"
+    return "192.168.0.119"
 
 #set these to correct ips
 def get_pi_ip():
@@ -44,7 +44,10 @@ def get_camara_input_location():
 
 #color in RGB
 def get_text_color():
-    return (0, 0, 0)
+    return (255, 255, 255)
 
 def get_text_scale():
     return 1
+
+def black_and_white():
+    return True
